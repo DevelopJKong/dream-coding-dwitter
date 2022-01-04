@@ -4,7 +4,7 @@ import cors from "cors";
 import morgan from "morgan";
 import helmet from "helmet";
 import tweetsRouter from "./router/tweets";
-const PORT = 4020;
+const PORT = 4030;
 
 const app = express();
 

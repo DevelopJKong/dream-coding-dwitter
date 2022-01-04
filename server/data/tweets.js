@@ -1,4 +1,3 @@
-// 이렇게 let을 사용하는것은 정말 나쁘다고 하셨는데 왜? 정확히 엄청 안좋은거지?
 let tweets = [
   {
     id: "1",
@@ -17,19 +16,20 @@ let tweets = [
   },
 ];
 
-export function getAll() {
+
+export async function getAll() {
   return tweets;
 }
 
-export function getAllByUsername() {
+export async function getAllByUsername(username) {
   return tweets.filter((tweet) => tweet.username === username);
 }
 
-export function getById() {
+export async function getById(id) {
   return tweets.find((tweet) => tweet.id === id);
 }
 
-export function create(text, name, username) {
+export async function create(text, name, username) {
   const tweet = {
     id: Date.now().toString(),
     text,
@@ -41,14 +41,14 @@ export function create(text, name, username) {
   return tweet;
 }
 
-export function update(id, text) {
+export async function update(id, text) {
   const tweet = tweets.find((tweet) => tweet.id === id);
   if (tweet) {
     tweet.text = text;
   }
-  return text;
+  return tweet;
 }
 
-export function remove(id) {
-  const tweet = tweets.filter((tweet) => tweet.id !== id);
+export async function remove(id) {
+  tweets = tweets.filter((tweet) => tweet.id !== id);
 }

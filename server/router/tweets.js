@@ -18,10 +18,6 @@ tweetsRouter.post("/", tweetController.createTweet);
 tweetsRouter.put("/:id", tweetController.updateTweet);
 
 // DELETE /tweets/:id
-tweetsRouter.delete("/:id", (req, res, next) => {
-  const id = req.params.id;
-  tweetsRepository.remove(id);
-  res.sendStatus(204);
-});
+tweetsRouter.delete("/:id",tweetController.deleteTweet );
 
 export default tweetsRouter;
