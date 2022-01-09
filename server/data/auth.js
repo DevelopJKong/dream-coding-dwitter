@@ -8,6 +8,14 @@ let users = [
     email: 'bob@gmail.com',
     url: 'http://source.unsplash.com/random',
   },
+  {
+    id: '2',
+    username: 'jeong',
+    password: '$2b$12$G9xf8SFq3oTEgdj7ozHQ/uhDOyeQcUEDU8tnOcvpvApuadr3nE5Vm',
+    name: 'Jeong',
+    email: 'jeong@gmail.com',
+    url: 'http://source.unsplash.com/random/1',
+  },
 ];
 
 export async function findByUsername(username) {

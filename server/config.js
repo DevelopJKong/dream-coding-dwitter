@@ -18,6 +18,6 @@ export const config = {
         saltRounds: required('BCRYPT_SALT_ROUNDS',12)
     },
     host: {
-        port: required('HOST_PORT',4050)
+        port: required('HOST_PORT',4060)
     }
 }
