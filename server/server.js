@@ -32,6 +32,6 @@ const handleListening = () =>
     `Server listening on port http://localhost:${config.host.port} 😎`
   );
 
-db.getConnection().then((connection) => console.log(connection)).catch(console.error);
+db.getConnection().then((connection) => console.log("Connection DB")).catch(console.error);
 const server = app.listen(config.host.port, handleListening);
 initSocket(server);
