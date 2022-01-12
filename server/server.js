@@ -6,8 +6,8 @@ import helmet from "helmet";
 import tweetsRouter from "./router/tweets";
 import authRouter from "./router/auth";
 import { config } from "./config";
-import { initSocket } from './connection/socket.js';
-import { db } from "./db/database";
+import { initSocket } from "./connection/socket.js";
+import { sequelize } from "./db/database.js";
 
 const app = express();
 
@@ -31,7 +31,9 @@ const handleListening = () =>
   console.log(
     `Server listening on port http://localhost:${config.host.port} 😎`
   );
-
-db.getConnection().then((connection) => console.log("Connection DB")).catch(console.error);
-const server = app.listen(config.host.port, handleListening);
-initSocket(server);
+sequelize.sync().then(() => {
+  console.log("DB Connection");
+  const server = app.listen(config.host.port, handleListening);
+  initSocket(server);
+});
+//db.getConnection().then((connection) => console.log("Connection DB")).catch(console.error);
