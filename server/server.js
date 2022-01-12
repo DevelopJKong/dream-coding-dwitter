@@ -6,8 +6,9 @@ import helmet from "helmet";
 import tweetsRouter from "./router/tweets";
 import authRouter from "./router/auth";
 import { config } from "./config";
-import { initSocket } from './connection/socket.js';
-import { db } from "./db/database";
+import { initSocket } from "./connection/socket.js";
+import { db } from "./database/database";
+import { connectDB } from "./database/database";
 
 const app = express();
 
@@ -32,6 +33,10 @@ const handleListening = () =>
     `Server listening on port http://localhost:${config.host.port} 😎`
   );
 
-db.getConnection().then((connection) => console.log(connection)).catch(console.error);
-const server = app.listen(config.host.port, handleListening);
-initSocket(server);
+connectDB()
+  .then((db) => {
+    console.log("DB connection!", db);
+    const server = app.listen(config.host.port, handleListening);
+    initSocket(server);
+  })
+  .catch(console.error);
