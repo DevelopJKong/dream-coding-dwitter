@@ -1,7 +1,16 @@
-import { config } from "../config";
-import {MongoClient} from "mongodb";
+import { config } from "../config.js";
+import { MongoClient } from "mongodb";
 
-export const connectDB = () => {
-    return new MongoClient(config.db.host).connect();
+let db;
+
+export const connectDB = async() => {
+  return new MongoClient(config.db.host).connect().then(client=> db= client.db());
+};
+
+export function getUsers() {
+    return db.collection('users');
 }
 
+export function getTweets() {
+    return db.collection('tweets');
+}

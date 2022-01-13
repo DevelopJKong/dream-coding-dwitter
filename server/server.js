@@ -3,12 +3,11 @@ import "express-async-errors";
 import cors from "cors";
 import morgan from "morgan";
 import helmet from "helmet";
-import tweetsRouter from "./router/tweets";
-import authRouter from "./router/auth";
-import { config } from "./config";
+import tweetsRouter from "./router/tweets.js";
+import authRouter from "./router/auth.js";
+import { config } from "./config.js";
 import { initSocket } from "./connection/socket.js";
-import { db } from "./database/database";
-import { connectDB } from "./database/database";
+import { connectDB } from "./database/database.js";
 
 const app = express();
 
@@ -34,8 +33,8 @@ const handleListening = () =>
   );
 
 connectDB()
-  .then((db) => {
-    console.log("DB connection!", db);
+  .then(() => {
+    console.log("DB connection!");
     const server = app.listen(config.host.port, handleListening);
     initSocket(server);
   })

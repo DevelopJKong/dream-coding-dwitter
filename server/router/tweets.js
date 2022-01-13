@@ -1,9 +1,9 @@
 import express from "express";
 import "express-async-errors";
 import {body} from "express-validator";
-import * as tweetController from "../controller/tweets";
-import { validate } from "../middleware/validator";
-import { isAuth } from "../middleware/auth";
+import * as tweetController from "../controller/tweets.js";
+import { validate } from "../middleware/validator.js";
+import { isAuth } from "../middleware/auth.js";
 
 // validation
 // sanitization
