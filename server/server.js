@@ -32,7 +32,7 @@ app.use((error, req, res, next) => {
   console.log(error);
   res.sendStatus(500);
 });
-
+//수정완료
 sequelize.sync().then(() => {
   console.log(`Server is started .... ${new Date()}`);
   const server = app.listen(config.port);
