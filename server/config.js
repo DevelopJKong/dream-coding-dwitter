@@ -21,6 +21,14 @@ export const config = {
     port: parseInt(required('HOST_PORT', 4100)),
   },
   db: {
+<<<<<<< HEAD
     host: required('DB_HOST_MONGO'),
+=======
+    host: required('DB_HOST'),
+    user: required('DB_USER'),
+    database: required('DB_DATABASE'),
+    password: required('DB_PASSWORD'),
+    port: required('DB_PORT'),
+>>>>>>> 96ab3238e6c354d951f3d2e4e4bb416687f0d4ad
   },
 };
