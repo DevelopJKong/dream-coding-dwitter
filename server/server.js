@@ -32,13 +32,10 @@ app.use((error, req, res, next) => {
   console.log(error);
   res.sendStatus(500);
 });
-const handleListening = () =>
-  console.log(
-    `Server listening on port http://localhost:${config.host.port} 😎`
-  );
+
 sequelize.sync().then(() => {
   console.log(`Server is started .... ${new Date()}`);
-  const server = app.listen(config.port, handleListening);
+  const server = app.listen(config.port);
   initSocket(server);
 });
 //db.getConnection().then((connection) => console.log("Connection DB")).catch(console.error);
