@@ -11,9 +11,14 @@ import { sequelize } from "./db/database.js";
 
 const app = express();
 
+const corsOption = {
+  origin: config.cors.allowedOrigin,
+  optionSuccessStatus: 200,
+}
+
 app.use(express.json());
 app.use(helmet());
-app.use(cors());
+app.use(cors(corsOption));
 app.use(morgan("tiny"));
 
 app.use("/tweets", tweetsRouter);
@@ -32,8 +37,8 @@ const handleListening = () =>
     `Server listening on port http://localhost:${config.host.port} 😎`
   );
 sequelize.sync().then(() => {
-  console.log("DB Connection");
-  const server = app.listen(config.host.port, handleListening);
+  console.log(`Server is started .... ${new Date()}`);
+  const server = app.listen(config.port, handleListening);
   initSocket(server);
 });
 //db.getConnection().then((connection) => console.log("Connection DB")).catch(console.error);
