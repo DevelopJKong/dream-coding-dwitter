@@ -18,9 +18,10 @@ export async function signup(req, res) {
     email,
     url,
   });
-  const token = createJwtToken(userId);
+  const token = createJwtToken(userId); //이제는 body가 아니라 cookie로 보내기
+  setToken(res,token);
   res.status(201).json({ token, username });
-}
+} 
 
 export async function login(req, res) {
   const { username, password } = req.body;
@@ -33,6 +34,7 @@ export async function login(req, res) {
     return res.status(401).json({ message: 'Invalid user or password' });
   }
   const token = createJwtToken(user.id);
+  setToken(res,token);
   res.status(200).json({ token, username });
 }
 
@@ -41,6 +43,17 @@ function createJwtToken(id) {
     expiresIn: config.jwt.expiresInSec,
   });
 }
+
+function setToken(res,token) {
+  options = {
+    maxAge:config.jwt.expiresInSec * 1000,
+    httpOnly: true,
+    sameSite: 'none',
+    secure:true 
+  }
+  res.cookie('token',token,options)//HTTP-ONLY
+}
+
 
 export async function me(req, res, next) {
   const user = await userRepository.findById(req.userId);
