@@ -2,7 +2,7 @@ import express from "express";
 import globalRouter from "./src/routers/globalRouter";
 import twitterRouter from "./src/routers/twitterRouter";
 
-const PORT = 4020;
+const PORT = 3000;
 
 const app = express();
 
